@@ -1,6 +1,6 @@
 <html>
 <body>
-<!--StartFragment--><html><head></head><body><p>要将 <strong>ngrok 地址 (<code inline="">https://nearby-mako-central.ngrok-free.app</code>)</strong> 绑定到 <strong>Cloudflare 自定义域名 (<code inline="">example.com</code>)</strong>，可以使用 <strong>Cloudflare Workers 代理请求</strong>，步骤如下：</p>
+<!--StartFragment--><html><head></head><body><p>要将 <strong>ngrok 地址 (<code inline="">https://xxxxxx.ngrok-free.app</code>)</strong> 绑定到 <strong>Cloudflare 自定义域名 (<code inline="">example.com</code>)</strong>，可以使用 <strong>Cloudflare Workers 代理请求</strong>，步骤如下：</p>
 <hr>
 <h2><strong>方法 1：使用 Cloudflare Workers 代理 ngrok</strong></h2>
 <h3><strong>1. 进入 Cloudflare Workers</strong></h3>
@@ -19,7 +19,7 @@
   async fetch(request) {
     // 将 Cloudflare 请求代理到 ngrok 地址
     let url = new URL(request.url);
-    url.hostname = "nearby-mako-central.ngrok-free.app";
+    url.hostname = "xxxxxx.ngrok-free.app";
 
     let modifiedRequest = new Request(url, request);
     return fetch(modifiedRequest);
@@ -38,7 +38,7 @@
 </ol>
 <hr>
 <h3><strong>4. 访问你的域名</strong></h3>
-<p>现在，访问 <code inline="">https://example.com</code>，Cloudflare Workers 会自动代理 <code inline="">https://nearby-mako-central.ngrok-free.app</code>，你就可以通过自己的域名访问 ngrok 了！🚀</p>
+<p>现在，访问 <code inline="">https://example.com</code>，Cloudflare Workers 会自动代理 <code inline="">https://xxxxxx.ngrok-free.app</code>，你就可以通过自己的域名访问 ngrok 了！🚀</p>
 <hr>
 <h2><strong>方法 2：使用 Cloudflare Page Rules（仅 HTTP 转发）</strong></h2>
 <p>如果你的 <strong>ngrok 是公网可访问的</strong>，你可以直接用 <strong>Cloudflare Page Rules</strong> 进行 <strong>301/302 重定向</strong>：</p>
@@ -48,7 +48,7 @@
 <li>规则设置：
 <ul>
 <li><strong>If the URL matches:</strong> <code inline="">https://example.com/*</code></li>
-<li><strong>Then the settings are:</strong> <code inline="">Forwarding URL (302)</code> → <code inline="">https://nearby-mako-central.ngrok-free.app/$1</code></li>
+<li><strong>Then the settings are:</strong> <code inline="">Forwarding URL (302)</code> → <code inline="">https://xxxxxx.ngrok-free.app/$1</code></li>
 </ul>
 </li>
 <li>点击 <strong>"Save and Deploy"</strong>。</li>
@@ -65,7 +65,7 @@ Cloudflare Page Rules 重定向 | 只是想跳转，不介意暴露 ngrok 地址
 
 <p>如果你想用 <strong>Cloudflare 自定义域名完整代理 ngrok 地址</strong>，建议使用 <strong>Cloudflare Workers</strong> 方法！🚀</p></body></html><!--EndFragment-->
 </body>
-</html>要将 **ngrok 地址 (`https://nearby-mako-central.ngrok-free.app`)** 绑定到 **Cloudflare 自定义域名 (`example.com`)**，可以使用 **Cloudflare Workers 代理请求**，步骤如下：  
+</html>要将 **ngrok 地址 (`https://xxxxxx.ngrok-free.app`)** 绑定到 **Cloudflare 自定义域名 (`example.com`)**，可以使用 **Cloudflare Workers 代理请求**，步骤如下：  
 
 ---
 
@@ -86,7 +86,7 @@ export default {
   async fetch(request) {
     // 将 Cloudflare 请求代理到 ngrok 地址
     let url = new URL(request.url);
-    url.hostname = "nearby-mako-central.ngrok-free.app";
+    url.hostname = "xxxxxx.ngrok-free.app";
 
     let modifiedRequest = new Request(url, request);
     return fetch(modifiedRequest);
@@ -107,7 +107,7 @@ export default {
 ---
 
 ### **4. 访问你的域名**
-现在，访问 `https://example.com`，Cloudflare Workers 会自动代理 `https://nearby-mako-central.ngrok-free.app`，你就可以通过自己的域名访问 ngrok 了！🚀  
+现在，访问 `https://example.com`，Cloudflare Workers 会自动代理 `https://xxxxxx.ngrok-free.app`，你就可以通过自己的域名访问 ngrok 了！🚀  
 
 ---
 
@@ -117,7 +117,7 @@ export default {
 2. 进入 **Rules** → **Page Rules**，点击 **"Create Page Rule"**。  
 3. 规则设置：
    - **If the URL matches:** `https://example.com/*`  
-   - **Then the settings are:** `Forwarding URL (302)` → `https://nearby-mako-central.ngrok-free.app/$1`  
+   - **Then the settings are:** `Forwarding URL (302)` → `https://xxxxxx.ngrok-free.app/$1`  
 4. 点击 **"Save and Deploy"**。  
 
 这种方式 **不会隐藏 ngrok 地址**，只是让 `example.com` 自动跳转到 `ngrok`，但 **推荐使用方法 1（Workers 代理），这样可以保留自定义域名**。

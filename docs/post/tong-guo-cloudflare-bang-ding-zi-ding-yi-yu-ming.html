@@ -12,7 +12,7 @@
     </script>
 <meta name="description" content="<html>
 <body>
-<!--StartFragment--><html><head></head><body><p>要将 <strong>ngrok 地址 (<code inline=''>https://nearby-mako-central.ngrok-free.app</code>)</strong> 绑定到 <strong>Cloudflare 自定义域名 (<code inline=''>example.com</code>)</strong>，可以使用 <strong>Cloudflare Workers 代理请求</strong>，步骤如下：</p>
+<!--StartFragment--><html><head></head><body><p>要将 <strong>ngrok 地址 (<code inline=''>https://xxxxxx.ngrok-free.app</code>)</strong> 绑定到 <strong>Cloudflare 自定义域名 (<code inline=''>example.com</code>)</strong>，可以使用 <strong>Cloudflare Workers 代理请求</strong>，步骤如下：</p>
 <hr>
 <h2><strong>方法 1：使用 Cloudflare Workers 代理 ngrok</strong></h2>
 <h3><strong>1. 进入 Cloudflare Workers</strong></h3>
@@ -21,7 +21,7 @@
 <meta property="og:title" content="通过cloudflare绑定自定义域名">
 <meta property="og:description" content="<html>
 <body>
-<!--StartFragment--><html><head></head><body><p>要将 <strong>ngrok 地址 (<code inline=''>https://nearby-mako-central.ngrok-free.app</code>)</strong> 绑定到 <strong>Cloudflare 自定义域名 (<code inline=''>example.com</code>)</strong>，可以使用 <strong>Cloudflare Workers 代理请求</strong>，步骤如下：</p>
+<!--StartFragment--><html><head></head><body><p>要将 <strong>ngrok 地址 (<code inline=''>https://xxxxxx.ngrok-free.app</code>)</strong> 绑定到 <strong>Cloudflare 自定义域名 (<code inline=''>example.com</code>)</strong>，可以使用 <strong>Cloudflare Workers 代理请求</strong>，步骤如下：</p>
 <hr>
 <h2><strong>方法 1：使用 Cloudflare Workers 代理 ngrok</strong></h2>
 <h3><strong>1. 进入 Cloudflare Workers</strong></h3>
@@ -99,7 +99,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div class="markdown-body" id="postBody">
 
-<p>要将 <strong>ngrok 地址 (<code class="notranslate">https://nearby-mako-central.ngrok-free.app</code>)</strong> 绑定到 <strong>Cloudflare 自定义域名 (<code class="notranslate">example.com</code>)</strong>，可以使用 <strong>Cloudflare Workers 代理请求</strong>，步骤如下：</p>
+<p>要将 <strong>ngrok 地址 (<code class="notranslate">https://xxxxxx.ngrok-free.app</code>)</strong> 绑定到 <strong>Cloudflare 自定义域名 (<code class="notranslate">example.com</code>)</strong>，可以使用 <strong>Cloudflare Workers 代理请求</strong>，步骤如下：</p>
 <hr>
 <h2><strong>方法 1：使用 Cloudflare Workers 代理 ngrok</strong></h2>
 <h3><strong>1. 进入 Cloudflare Workers</strong></h3>
@@ -118,7 +118,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
   async fetch(request) {
     // 将 Cloudflare 请求代理到 ngrok 地址
     let url = new URL(request.url);
-    url.hostname = "nearby-mako-central.ngrok-free.app";
+    url.hostname = "xxxxxx.ngrok-free.app";
 <pre class="notranslate"><code class="notranslate">let modifiedRequest = new Request(url, request);
 return fetch(modifiedRequest);
 </code></pre>
@@ -137,7 +137,7 @@ return fetch(modifiedRequest);
 </ol>
 <hr>
 <h3><strong>4. 访问你的域名</strong></h3>
-<p>现在，访问 <code class="notranslate">https://example.com</code>，Cloudflare Workers 会自动代理 <code class="notranslate">https://nearby-mako-central.ngrok-free.app</code>，你就可以通过自己的域名访问 ngrok 了！🚀</p>
+<p>现在，访问 <code class="notranslate">https://example.com</code>，Cloudflare Workers 会自动代理 <code class="notranslate">https://xxxxxx.ngrok-free.app</code>，你就可以通过自己的域名访问 ngrok 了！🚀</p>
 <hr>
 <h2><strong>方法 2：使用 Cloudflare Page Rules（仅 HTTP 转发）</strong></h2>
 <p>如果你的 <strong>ngrok 是公网可访问的</strong>，你可以直接用 <strong>Cloudflare Page Rules</strong> 进行 <strong>301/302 重定向</strong>：</p>
@@ -147,7 +147,7 @@ return fetch(modifiedRequest);
 <li>规则设置：
 <ul>
 <li><strong>If the URL matches:</strong> <code class="notranslate">https://example.com/*</code></li>
-<li><strong>Then the settings are:</strong> <code class="notranslate">Forwarding URL (302)</code> → <code class="notranslate">https://nearby-mako-central.ngrok-free.app/$1</code></li>
+<li><strong>Then the settings are:</strong> <code class="notranslate">Forwarding URL (302)</code> → <code class="notranslate">https://xxxxxx.ngrok-free.app/$1</code></li>
 </ul>
 </li>
 <li>点击 <strong>"Save and Deploy"</strong>。</li>
@@ -181,7 +181,7 @@ return fetch(modifiedRequest);
 </table></markdown-accessiblity-table>
 <p>如果你想用 <strong>Cloudflare 自定义域名完整代理 ngrok 地址</strong>，建议使用 <strong>Cloudflare Workers</strong> 方法！🚀</p>
 
-要将 **ngrok 地址 (`https://nearby-mako-central.ngrok-free.app`)** 绑定到 **Cloudflare 自定义域名 (`example.com`)**，可以使用 **Cloudflare Workers 代理请求**，步骤如下：  
+要将 **ngrok 地址 (`https://xxxxxx.ngrok-free.app`)** 绑定到 **Cloudflare 自定义域名 (`example.com`)**，可以使用 **Cloudflare Workers 代理请求**，步骤如下：  
 <hr>
 <h2><strong>方法 1：使用 Cloudflare Workers 代理 ngrok</strong></h2>
 <h3><strong>1. 进入 Cloudflare Workers</strong></h3>
@@ -200,7 +200,7 @@ return fetch(modifiedRequest);
   <span class="pl-k">async</span> <span class="pl-en">fetch</span><span class="pl-kos">(</span><span class="pl-s1">request</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
     <span class="pl-c">// 将 Cloudflare 请求代理到 ngrok 地址</span>
     <span class="pl-k">let</span> <span class="pl-s1">url</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-c1">URL</span><span class="pl-kos">(</span><span class="pl-s1">request</span><span class="pl-kos">.</span><span class="pl-c1">url</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-s1">url</span><span class="pl-kos">.</span><span class="pl-c1">hostname</span> <span class="pl-c1">=</span> <span class="pl-s">"nearby-mako-central.ngrok-free.app"</span><span class="pl-kos">;</span>
+    <span class="pl-s1">url</span><span class="pl-kos">.</span><span class="pl-c1">hostname</span> <span class="pl-c1">=</span> <span class="pl-s">"xxxxxx.ngrok-free.app"</span><span class="pl-kos">;</span>
 
     <span class="pl-k">let</span> <span class="pl-s1">modifiedRequest</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">Request</span><span class="pl-kos">(</span><span class="pl-s1">url</span><span class="pl-kos">,</span> <span class="pl-s1">request</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
     <span class="pl-k">return</span> <span class="pl-en">fetch</span><span class="pl-kos">(</span><span class="pl-s1">modifiedRequest</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
@@ -218,7 +218,7 @@ return fetch(modifiedRequest);
 </ol>
 <hr>
 <h3><strong>4. 访问你的域名</strong></h3>
-<p>现在，访问 <code class="notranslate">https://example.com</code>，Cloudflare Workers 会自动代理 <code class="notranslate">https://nearby-mako-central.ngrok-free.app</code>，你就可以通过自己的域名访问 ngrok 了！🚀</p>
+<p>现在，访问 <code class="notranslate">https://example.com</code>，Cloudflare Workers 会自动代理 <code class="notranslate">https://xxxxxx.ngrok-free.app</code>，你就可以通过自己的域名访问 ngrok 了！🚀</p>
 <hr>
 <h2><strong>方法 2：使用 Cloudflare Page Rules（仅 HTTP 转发）</strong></h2>
 <p>如果你的 <strong>ngrok 是公网可访问的</strong>，你可以直接用 <strong>Cloudflare Page Rules</strong> 进行 <strong>301/302 重定向</strong>：</p>
@@ -228,7 +228,7 @@ return fetch(modifiedRequest);
 <li>规则设置：
 <ul>
 <li><strong>If the URL matches:</strong> <code class="notranslate">https://example.com/*</code></li>
-<li><strong>Then the settings are:</strong> <code class="notranslate">Forwarding URL (302)</code> → <code class="notranslate">https://nearby-mako-central.ngrok-free.app/$1</code></li>
+<li><strong>Then the settings are:</strong> <code class="notranslate">Forwarding URL (302)</code> → <code class="notranslate">https://xxxxxx.ngrok-free.app/$1</code></li>
 </ul>
 </li>
 <li>点击 <strong>"Save and Deploy"</strong>。</li>
