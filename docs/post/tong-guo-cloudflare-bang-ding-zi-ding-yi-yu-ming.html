@@ -31,7 +31,7 @@
 <meta property="og:url" content="https://rogerchou8.github.io/blog/post/tong-guo-cloudflare-bang-ding-zi-ding-yi-yu-ming.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
 <title>通过cloudflare绑定自定义域名</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 
 </head>
@@ -180,87 +180,7 @@ return fetch(modifiedRequest);
 </tbody>
 </table></markdown-accessiblity-table>
 <p>如果你想用 <strong>Cloudflare 自定义域名完整代理 ngrok 地址</strong>，建议使用 <strong>Cloudflare Workers</strong> 方法！🚀</p>
-
-要将 **ngrok 地址 (`https://xxxxxx.ngrok-free.app`)** 绑定到 **Cloudflare 自定义域名 (`example.com`)**，可以使用 **Cloudflare Workers 代理请求**，步骤如下：  
-<hr>
-<h2><strong>方法 1：使用 Cloudflare Workers 代理 ngrok</strong></h2>
-<h3><strong>1. 进入 Cloudflare Workers</strong></h3>
-<ol>
-<li>登录 [<a href="https://dash.cloudflare.com/" rel="nofollow">Cloudflare Dashboard</a>](<a href="https://dash.cloudflare.com/)%E3%80%82" rel="nofollow">https://dash.cloudflare.com/)。</a></li>
-<li>选择你的域名，例如 <code class="notranslate">example.com</code>。</li>
-<li>在左侧菜单找到 <strong>Workers &amp; Pages</strong>，点击 <strong>Create Application</strong>。</li>
-</ol>
-<hr>
-<h3><strong>2. 创建一个 Workers 服务</strong></h3>
-<ol>
-<li>点击 <strong>"Create a Service"</strong>，选择 <strong>HTTP Handler</strong>，然后点击 <strong>"Create Service"</strong>。</li>
-<li>在代码编辑器中，删除默认代码，并粘贴以下代码：</li>
-</ol>
-<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-k">export</span> <span class="pl-k">default</span> <span class="pl-kos">{</span>
-  <span class="pl-k">async</span> <span class="pl-en">fetch</span><span class="pl-kos">(</span><span class="pl-s1">request</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-    <span class="pl-c">// 将 Cloudflare 请求代理到 ngrok 地址</span>
-    <span class="pl-k">let</span> <span class="pl-s1">url</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-c1">URL</span><span class="pl-kos">(</span><span class="pl-s1">request</span><span class="pl-kos">.</span><span class="pl-c1">url</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-s1">url</span><span class="pl-kos">.</span><span class="pl-c1">hostname</span> <span class="pl-c1">=</span> <span class="pl-s">"xxxxxx.ngrok-free.app"</span><span class="pl-kos">;</span>
-
-    <span class="pl-k">let</span> <span class="pl-s1">modifiedRequest</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> <span class="pl-v">Request</span><span class="pl-kos">(</span><span class="pl-s1">url</span><span class="pl-kos">,</span> <span class="pl-s1">request</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-k">return</span> <span class="pl-en">fetch</span><span class="pl-kos">(</span><span class="pl-s1">modifiedRequest</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-  <span class="pl-kos">}</span>
-<span class="pl-kos">}</span><span class="pl-kos">;</span></pre></div>
-<hr>
-<h3><strong>3. 绑定 Workers 到自定义域名</strong></h3>
-<ol>
-<li>进入 <strong>Workers &amp; Pages</strong> → <strong>Routes</strong>。</li>
-<li>添加一个新的路由，例如：
-<pre class="notranslate"><code class="notranslate">example.com/*
-</code></pre>
-</li>
-<li>选择你刚刚创建的 Worker 服务，点击 <strong>Save</strong>。</li>
-</ol>
-<hr>
-<h3><strong>4. 访问你的域名</strong></h3>
-<p>现在，访问 <code class="notranslate">https://example.com</code>，Cloudflare Workers 会自动代理 <code class="notranslate">https://xxxxxx.ngrok-free.app</code>，你就可以通过自己的域名访问 ngrok 了！🚀</p>
-<hr>
-<h2><strong>方法 2：使用 Cloudflare Page Rules（仅 HTTP 转发）</strong></h2>
-<p>如果你的 <strong>ngrok 是公网可访问的</strong>，你可以直接用 <strong>Cloudflare Page Rules</strong> 进行 <strong>301/302 重定向</strong>：</p>
-<ol>
-<li>进入 Cloudflare 控制台，选择你的域名 (<code class="notranslate">example.com</code>)。</li>
-<li>进入 <strong>Rules</strong> → <strong>Page Rules</strong>，点击 <strong>"Create Page Rule"</strong>。</li>
-<li>规则设置：
-<ul>
-<li><strong>If the URL matches:</strong> <code class="notranslate">https://example.com/*</code></li>
-<li><strong>Then the settings are:</strong> <code class="notranslate">Forwarding URL (302)</code> → <code class="notranslate">https://xxxxxx.ngrok-free.app/$1</code></li>
-</ul>
-</li>
-<li>点击 <strong>"Save and Deploy"</strong>。</li>
-</ol>
-<p>这种方式 <strong>不会隐藏 ngrok 地址</strong>，只是让 <code class="notranslate">example.com</code> 自动跳转到 <code class="notranslate">ngrok</code>，但 <strong>推荐使用方法 1（Workers 代理），这样可以保留自定义域名</strong>。</p>
-<hr>
-<h2><strong>总结</strong></h2>
-<markdown-accessiblity-table><table role="table">
-<thead>
-<tr>
-<th>方法</th>
-<th>适用场景</th>
-<th>优点</th>
-<th>缺点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Cloudflare Workers 代理（推荐）</strong></td>
-<td>想要在 <code class="notranslate">example.com</code> 直接访问 ngrok</td>
-<td><strong>域名不会跳转，支持 HTTPS</strong></td>
-<td>可能有少量 Workers 请求费用</td>
-</tr>
-<tr>
-<td><strong>Cloudflare Page Rules 重定向</strong></td>
-<td>只是想跳转，不介意暴露 ngrok 地址</td>
-<td><strong>简单易用，免费</strong></td>
-<td><strong>用户会看到 ngrok 地址</strong></td>
-</tr>
-</tbody>
-</table></markdown-accessiblity-table>
-<p>如果你想用 <strong>Cloudflare 自定义域名完整代理 ngrok 地址</strong>，建议使用 <strong>Cloudflare Workers</strong> 方法！🚀</p></div>
+</div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
